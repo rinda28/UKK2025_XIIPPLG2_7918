@@ -1,32 +1,57 @@
+<?php
+session_start();
+require_once 'config/koneksi.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY TODO LIST</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Todo List App</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="assets/css/style.css" rel="stylesheet">
+ 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
+    <?php if(!isset($_SESSION['user_id'])): ?>
+        <?php include 'views/login.php'; ?>
+    <?php else: ?>
+        <?php include 'views/header.php'; ?>
+        <div class="container mt-4">
+            <?php if(isset($_GET['msg'])): ?>
+                <?php
+                $messages = [
+                    'task_added' => ['success', 'Task added successfully!'],
+                    'task_completed' => ['success', 'Task marked as completed!'],
+                    'task_deleted' => ['success', 'Task deleted successfully!'],
+                    'category_added' => ['success', 'Category added successfully!'],
+                    'category_deleted' => ['success', 'Category deleted successfully!'],
+                    'registered' => ['success', 'Registration successful! Please login.'],
+                ];
+                if(isset($messages[$_GET['msg']])): ?>
+                    <div class="alert alert-<?php echo $messages[$_GET['msg']][0]; ?> alert-dismissible fade show">
+                        <?php echo $messages[$_GET['msg']][1]; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <div class="row">
+                <div class="col-md-4">
+                    <?php include 'views/category_form.php'; ?>
+                </div>
+                <div class="col-md-8">
+                    <?php include 'views/task_list.php'; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-    <a class="navbar-brand" href="index.php">MY TODO LIST</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse mt-2" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto"></div>
-      <a href="register.php" class="btn btn-outline-primary m-1">Daftar</a>
-      <a href="login.php" class="btn btn-outline-success m-1">Masuk</a>
-    </div>
-  </div>
-</nav>
 
-<footer class="d-flex justify-content-center border-top mt-3 bg-light fixed-bottom">
-  <p>&copy; UKK PPLG 2024 | Rinda Mahadewi</p>
-</footer>
-
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
