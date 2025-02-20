@@ -20,9 +20,8 @@
                             ?>
                             <tr>
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $data['category']; ?></td>
+                                <td><?php echo $data['categories']; ?></td>
                                 <td>
-                                    <a href="?page=categories_ubah&&id=<?php echo $data['id']; ?>" class="btn btn-outline-info">Ubah</a>
                                     <a onclick="return confirm('Apakah anda yakin menhapus data ini?');" href="?page=categories_hapus&&id=<?php echo $data['id']; ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i>  Hapus</a>
                                 </td>
                             </tr>
@@ -32,5 +31,5 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>
 </div>

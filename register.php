@@ -17,7 +17,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body style="background-color: #D17D98;">
+    <body style="background-color:rgb(255, 255, 255);">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>

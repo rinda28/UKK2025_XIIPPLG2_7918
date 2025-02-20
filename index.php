@@ -18,13 +18,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #FFB6C1;">
-        <a class="navbar-brand" href="index.html" style="padding-left: 20px; color: black; font-weight: bold;">My To Do List</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color:rgb(0, 0, 0);">
+            <a class="navbar-brand" style="padding-left: 20px; color: white; font-weight: bold;">My To Do List</a>
+            <div class="ms-auto me-4 d-flex align-items-center">
+                <form class="d-flex me-3" role="search">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-info btn-sm" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            <!-- <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button> -->
+             
+            <!-- <div class="ms-auto me-4 d-flex align-items-center">
+                <form class="d-flex me-3" role="search">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-info btn-sm" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+                
+                <a href="profile.php"><i class="fa fa-user-circle fa-2x"></i>
+                </a>
+            </div>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #FFE4E1">
+                <div id="layoutSidenav">
+                    <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: rgb(218, 207, 149)">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
@@ -40,16 +63,20 @@
                             <a class="nav-link" href="?page=tasks" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Tugas
-                            </a>
+                            <!-- </a>
                             <a class="nav-link" href="logout.php" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
                                 Logout
-                            </a>
+                            </a> -->
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer" style="background-color: #FFB6C1">
-                        <div class="small">Logged in as:</div>
-                        <?php echo $_SESSION['users']['nama']; ?>
+                    <div class="sb-sidenav-footer" style="background-color:rgb(0, 0, 0)">
+                        <!-- <div class="small">Logged in as:</div> -->
+                        <!-- <?php echo $_SESSION['users']['nama']; ?> -->
+                        <a class="nav-link" href="logout.php" style="color: white;">
+                                <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
+                                Logout
+                            </a>
                     </div>
                 </nav>
             </div>

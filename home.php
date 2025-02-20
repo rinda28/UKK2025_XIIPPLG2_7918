@@ -5,7 +5,7 @@
 
 <div class="row">
         <div class="col-xl-3 col-md-6">
-            <div class="card text-white mb-4" style="background-color:rgb(130, 60, 187);">
+            <div class="card text-white mb-4" style="background-color: rgb(218, 207, 149);">
                 <div class="card-body">
                 <?php
                     echo mysqli_num_rows(mysqli_query($koneksi, "SELECT*FROM categories"));
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card text-white mb-4" style="background-color: rgb(130, 60, 187);">
+            <div class="card text-white mb-4" style="background-color: rgb(218, 207, 149);">
                 <div class="card-body">
                 <?php
                     echo mysqli_num_rows(mysqli_query($koneksi, "SELECT*FROM tasks"));
@@ -32,7 +32,7 @@
         </div>
 </div>
 
-<div class="card col-md-6" style="background-color:rgb(65, 59, 75);">
+<!-- <div class="card col-md-6" style="background-color: rgb(218, 207, 149);">
     <div class="card-body">
         <table class="table table-bordered">
             <tr>
@@ -44,7 +44,7 @@
                 <td width="100">Tanggal Login</td>
                 <td width="1">:</td>
                 <td><?php echo date('d-m-Y'); ?></td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </div>

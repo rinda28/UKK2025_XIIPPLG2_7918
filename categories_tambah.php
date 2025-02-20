@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "koneksi.php"; 
 
 
@@ -17,11 +16,11 @@ if (!isset($_SESSION['users'])) {
                 <form method="post">
                     <?php
                     if (isset($_POST['submit'])) {
-                        $category = mysqli_real_escape_string($koneksi, $_POST['category']);
+                        $categories = mysqli_real_escape_string($koneksi, $_POST['categories']);
                         $user_id = $_SESSION['users']['id']; 
 
                         
-                        $query = mysqli_query($koneksi, "INSERT INTO categories (category, user_id) VALUES ('$category', '$user_id')");
+                        $query = mysqli_query($koneksi, "INSERT INTO categories (categories, user_id) VALUES ('$categories', '$user_id')");
 
                         if ($query) {
                             echo '<script>alert("Tambah data berhasil.");</script>';
@@ -34,10 +33,10 @@ if (!isset($_SESSION['users'])) {
                     <div class="row mb-3">
                         <div class="col-md-2">Nama Kategori</div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="category" required>
+                            <input type="text" class="form-control" name="categories" required>
                         </div>
                     </div>
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['users']['id']; ?>"> <!-- Input tersembunyi untuk user_id -->
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['users']['id']; ?>">
                     <div class="row mb-3">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">

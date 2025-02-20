@@ -1,3 +1,11 @@
+<?php
+include "koneksi.php"; 
+
+if (!isset($_SESSION['users'])) {
+    header('location:login.php');    
+    exit();
+}
+?>
 <h1 class="mt-4">Tugas</h1>
 <div class="card">
     <div class="card-body">
@@ -6,37 +14,44 @@
                 <form method="post">
                     <?php
                         if(isset($_POST['submit'])) {
-                            $category_id = $_POST['category_id'];
-                            $task = $_POST['task_id'];
-                            $query = mysqli_query($koneksi, "INSERT INTO tasks(category_id, task_id) VALUES ('$category_id', '$task_id')");
+                            // Menggunakan 'category_id' sesuai dengan nama yang benar
+                            $category_id = mysqli_real_escape_string($koneksi, $_POST['categories']); // Ubah 'category_id' menjadi 'categories'
+                            $tasks = mysqli_real_escape_string($koneksi, $_POST['tasks']);
+                            $priority = mysqli_real_escape_string($koneksi, $_POST['priority']);
+                            $date = mysqli_real_escape_string($koneksi, $_POST['date']);
+                            $user_id = $_SESSION['users']['id'];
+                            $status = mysqli_real_escape_string($koneksi, $_POST['status']);
+
+                            // Mengganti $due_date dengan $date
+                            $query = mysqli_query($koneksi, "INSERT INTO tasks (category_id, tasks, priority, due_date, user_id, status) 
+                                VALUES ('$category_id', '$tasks', '$priority', '$date', '$user_id', '$status')");
 
                             if($query) {
                                 echo '<script>alert("Tambah data berhasil.");</script>';
                                 echo '<script>window.location.href = "?page=tasks";</script>';
-                            }else{
-                                echo '<script>alert("Tambah data gagal.");</script>';
+                            } else {
+                                echo '<script>alert("Tambah data gagal: ' . mysqli_error($koneksi) . '");</script>';
                             }
                         }
                     ?>  
-
                     <div class="row mb-3">
-                        <div class="col-md-2">Kategori</div>
+                        <div class="col-md-2">Nama Kategori</div>
                         <div class="col-md-8 mb-3">
-                            <select name="category_id" class="form-control">
+                            <select name="categories" class="form-control">
                                 <?php
                                 $cat = mysqli_query($koneksi, "SELECT * FROM categories");
                                 while ($categories = mysqli_fetch_array($cat)) {
                                     ?>
-                                    <option value="<?php echo $categories['category_id']; ?>"><?php echo $categories['categories']; ?></option>
+                                    <option value="<?php echo $categories['id']; ?>"><?php echo $categories['categories']; ?></option>
                                     <?php
                                 }
                                 ?>
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
                     <div class="row mb-3">
-                        <div class="col-md-2">Tugas</div>
-                        <div class="col-md-8"><input type="text" class="form-control" name="task"></div>
+                        <div class="col-md-2">Nama Tugas</div>
+                        <div class="col-md-8"><input type="text" class="form-control" name="tasks"></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-2">Prioritas</div>
@@ -46,12 +61,12 @@
                                 <option value="sedang">Sedang</option>
                                 <option value="rendah">Rendah</option>
                             </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
+                    <div class="row mb-3">
                         <div class="col-md-2">Tanggal Riwayat</div>
                         <div class="col-md-8">
-                            <input type="date" class="form-control" name="due_date">
+                            <input type="date" class="form-control" name="date">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -63,6 +78,7 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['users']['id']; ?>">
                     <div class="row mb-3">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
