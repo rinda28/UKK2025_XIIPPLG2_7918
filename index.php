@@ -20,6 +20,7 @@
 <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color:rgb(0, 0, 0);">
             <a class="navbar-brand" style="padding-left: 20px; color: white; font-weight: bold;">My To Do List</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <div class="ms-auto me-4 d-flex align-items-center">
                 <form class="d-flex me-3" role="search">
                     <div class="input-group">
@@ -29,17 +30,6 @@
                         </button>
                     </div>
                 </form>
-            <!-- <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button> -->
-             
-            <!-- <div class="ms-auto me-4 d-flex align-items-center">
-                <form class="d-flex me-3" role="search">
-                    <div class="input-group">
-                        <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-info btn-sm" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form> -->
                 
                 <a href="profile.php"><i class="fa fa-user-circle fa-2x"></i>
                 </a>
@@ -63,6 +53,11 @@
                             <a class="nav-link" href="?page=tasks" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Tugas
+                            </a>
+                            <a class="nav-link" href="?page=laporan" style="color: black;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Laporan
+                            </a>
                             <!-- </a>
                             <a class="nav-link" href="logout.php" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
@@ -93,13 +88,6 @@
                         ?>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"> &copy; My To Do List 2025</div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>

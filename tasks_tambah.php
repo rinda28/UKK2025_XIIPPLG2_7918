@@ -57,9 +57,9 @@ if (!isset($_SESSION['users'])) {
                         <div class="col-md-2">Prioritas</div>
                         <div class="col-md-8 mb-3">
                             <select name="priority" class="form-control">
-                                <option value="tinggi">Tinggi</option>
-                                <option value="sedang">Sedang</option>
-                                <option value="rendah">Rendah</option>
+                                <option value="wajib">Wajib</option>
+                                <option value="tiak wajib">Tidak wajib</option>
+                                <option value="bebas">Bebas</option>
                             </select>
                         </div>
                     </div>

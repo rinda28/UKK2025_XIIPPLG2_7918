@@ -4,21 +4,28 @@
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
-                    <?php
+                <?php
+                        $id = $_GET['id'];
                         if(isset($_POST['submit'])) {
-                            $category_id = $_POST['category_id'];
-                            $task = $_POST['task_id'];
-                            $query = mysqli_query($koneksi, "INSERT INTO tasks(category_id, task_id) VALUES ('$category_id', '$task_id')");
+                            $category_id = mysqli_real_escape_string($koneksi, $_POST['category_id']);
+                            $tasks = mysqli_real_escape_string($koneksi, $_POST['tasks']);
+                            $priority = mysqli_real_escape_string($koneksi, $_POST['priority']);
+                            $due_date = mysqli_real_escape_string($koneksi, $_POST['due_date']);
+                            $user_id = $_SESSION['users']['id'];
+                            $status = mysqli_real_escape_string($koneksi, $_POST['status']);
+
+                            $query = mysqli_query($koneksi, "UPDATE tasks set category_id='$category_id', tasks='$tasks', priority='$priority', due_date='$due_date', user_id='$user_id', status='$status' WHERE id=$id");
 
                             if($query) {
-                                echo '<script>alert("Tambah data berhasil.");</script>';
+                                echo '<script>alert("Ubah data berhasil.");</script>';
                                 echo '<script>window.location.href = "?page=tasks";</script>';
-                            }else{
-                                echo '<script>alert("Tambah data gagal.");</script>';
+                            } else {
+                                echo '<script>alert("Ubah data gagal: ' . mysqli_error($koneksi) . '");</script>';
                             }
                         }
+                        $query = mysqli_query($koneksi, "SELECT*FROM tasks WHERE id=$id");
+                        $data = mysqli_fetch_array($query);
                     ?>  
-
                     <div class="row mb-3">
                         <div class="col-md-2">Kategori</div>
                         <div class="col-md-8 mb-3">
@@ -27,7 +34,7 @@
                                 $cat = mysqli_query($koneksi, "SELECT * FROM categories");
                                 while ($categories = mysqli_fetch_array($cat)) {
                                     ?>
-                                    <option value="<?php echo $categories['category_id']; ?>"><?php echo $categories['categories']; ?></option>
+                                    <option value="<?php echo $categories['id']; ?>"><?php echo $categories['categories']; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -36,15 +43,15 @@
                 </div>
                     <div class="row mb-3">
                         <div class="col-md-2">Tugas</div>
-                        <div class="col-md-8"><input type="text" class="form-control" name="task"></div>
+                        <div class="col-md-8"><input type="text" class="form-control" name="tasks"></div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-2">Prioritas</div>
                         <div class="col-md-8 mb-3">
                             <select name="priority" class="form-control">
-                                <option value="tinggi">Tinggi</option>
-                                <option value="sedang">Sedang</option>
-                                <option value="rendah">Rendah</option>
+                                <option value="wajib">Wajib</option>
+                                <option value="tidak wajib">Tidak wajib</option>
+                                <option value="bebas">Bebas</option>
                             </select>
                     </div>
                 </div>
@@ -53,21 +60,11 @@
                         <div class="col-md-8">
                             <input type="date" class="form-control" name="due_date">
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-2">Status</div>
-                        <div class="col-md-8">
-                            <select name="status" class="form-control">
-                                <option value="complete">Complete</option>
-                                <option value="not complete">Not Complete</option>
-                            </select>
-                        </div>
-                    </div>
+                    </div> 
                     <div class="row mb-3">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <button type="submit" class="btn btn-outline-primary" name="submit" value="submit">Simpan</button>
-                            <button type="reset" class="btn btn-outline-secondary">Reset</button>
                             <a href="?page=tasks" class="btn btn-outline-danger">Kembali</a>
                         </div>
                     </div>
